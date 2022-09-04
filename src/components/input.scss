@@ -1,0 +1,14 @@
+.input--section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 2.5rem;
+} 
+
+input {
+    width: 250px;
+    padding: 0.6rem;
+    border: 1px solid rgba(4, 6, 6, 0.174);
+    border-radius: 5px;
+    
+}
