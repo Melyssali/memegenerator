@@ -1,26 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './generate.scss';
 import './input.scss';
-import memedata from '../memedata';
 import GeneratedImage from './GeneratedImage';
 
 
 const Generate = () => {
     // state
-
+    const [allMemeData, setAllMemeData] = useState({});
     const [meme, setMeme] = useState({
         topText: "",
         bottomText: "",
         randomImage : "http://i.imgflip.com/1bij.jpg",
    });
-//    const [allMemeImages, setAllMemeImages] = useState(memedata);
+
+    useEffect(() => {
+        fetch("https://api.imgflip.com/get_memes")
+            .then(res => res.json())
+            .then(result => {
+                const {memes} = result.data;
+                setAllMemeData(memes)
+            });
+            
+    }, []) 
+
+    console.log(`voici les résultats du fetch : ${JSON.stringify(allMemeData)}`);
 
    
     let url;
     const okfunc = () => {
-        const memeArray = memedata.data.memes;
-        const randomArray = Math.floor(Math.random() * memeArray.length);
-        url = memeArray[randomArray].url;
+        const randomArray = Math.floor(Math.random() * allMemeData.length);
+        url = allMemeData[randomArray].url;
         setMeme(prevState => ({
             ...prevState, 
             randomImage: url
