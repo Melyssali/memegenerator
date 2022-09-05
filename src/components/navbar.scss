@@ -25,3 +25,10 @@ color: #FFFFFF;
 padding: 20px;
 align-self: center;
 }
+
+@media screen and (max-width: 600px) {
+    .navbar--text {
+        font-size: 0.8rem;
+       
+        }
+  }
